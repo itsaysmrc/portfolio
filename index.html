@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEM MİRAÇ BARAÇ — Creative Developer, AI Architect & Designer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Syne (Display), Space Grotesk (Tech), Inter (UI), JetBrains Mono (Code/HUD) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        tech: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: '#060608',
+                        charcoal: '#0f1015',
+                        amberGlow: '#FF5500',
+                        goldGlow: '#FFAA00',
+                        cyberCyan: '#00F0FF',
+                        neonPurple: '#8B5CF6'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --cursor-x: 50vw;
+            --cursor-y: 50vh;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        ::selection {
+            background: #FF5500;
+            color: #fff;
+        }
+
+        body {
+            background-color: #060608;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* AYDINLIK TEMA (LIGHT MODE) UYUMLULUK KATMANI */
+        html.light body {
+            background-color: #F5F4F0;
+            color: #111827;
+        }
+        html.light .bg-obsidian,
+        html.light .bg-obsidian\/95,
+        html.light .bg-obsidian\/90,
+        html.light .bg-obsidian\/85,
+        html.light .bg-obsidian\/80,
+        html.light .bg-obsidian\/70,
+        html.light .bg-obsidian\/60 {
+            background-color: rgba(255, 255, 255, 0.88) !important;
+        }
+        html.light .bg-charcoal {
+            background-color: #E5E4DF !important;
+        }
+        html.light .cyber-card {
+            background: rgba(255, 255, 255, 0.82);
+            border-color: rgba(0, 0, 0, 0.09);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.07);
+        }
+        html.light .cyber-card:hover {
+            border-color: rgba(255, 85, 0, 0.5);
+            box-shadow: 0 20px 45px -12px rgba(255, 85, 0, 0.18);
+        }
+        html.light .text-white {
+            color: #111827 !important;
+        }
+        html.light .text-gray-200,
+        html.light .text-gray-300 {
+            color: #374151 !important;
+        }
+        html.light .text-gray-400 {
+            color: #4B5563 !important;
+        }
+        html.light .border-white\/5,
+        html.light .border-white\/10,
+        html.light .border-white\/15 {
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+        html.light .hero-backdrop-text {
+            background: linear-gradient(180deg, rgba(17, 24, 39, 0.82) 0%, rgba(75, 85, 99, 0.35) 55%, rgba(245, 244, 240, 0.05) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.08));
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060608;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262730;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF5500;
+        }
+
+        /* Giant Metallic Backdrop Typography matching the screenshot */
+        .hero-backdrop-text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(3.6rem, 15.5vw, 17rem);
+            line-height: 0.82;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(180,175,170,0.45) 48%, rgba(30,25,25,0.08) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            user-select: none;
+            pointer-events: none;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.9));
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Subtle Ambient Light behind Bust */
+        .bust-ambient-glow {
+            background: radial-gradient(circle at 50% 48%, rgba(255, 85, 0, 0.22) 0%, rgba(255, 140, 0, 0.07) 35%, rgba(6, 6, 8, 0) 70%);
+            transition: background 0.8s ease;
+        }
+
+        .bust-ambient-glow.mode-ai {
+            background: radial-gradient(circle at 50% 48%, rgba(0, 240, 255, 0.22) 0%, rgba(139, 92, 246, 0.08) 38%, rgba(6, 6, 8, 0) 70%);
+        }
+
+        /* Glassmorphism Cards */
+        .cyber-card {
+            background: rgba(15, 16, 22, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cyber-card:hover {
+            border-color: rgba(255, 85, 0, 0.45);
+            box-shadow: 0 20px 50px -15px rgba(255, 85, 0, 0.18);
+            transform: translateY(-4px);
+        }
+
+        /* Reveal Pill Button matching reference image */
+        .reveal-pill {
+            background: rgba(18, 18, 24, 0.78);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 120, 40, 0.45);
+            box-shadow: 0 0 25px rgba(255, 85, 0, 0.25), inset 0 0 12px rgba(255, 85, 0, 0.12);
+            transition: all 0.3s ease;
+        }
+        .reveal-pill:hover {
+            border-color: #FFAA00;
+            box-shadow: 0 0 35px rgba(255, 85, 0, 0.55), inset 0 0 18px rgba(255, 170, 0, 0.25);
+            transform: scale(1.05);
+        }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 3px;
+            background: #1f212d;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #FF5500;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 12px #FF5500;
+        }
+
+        /* Mobile Scrollbar Hide & Touch Action */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        #sand-bust-canvas {
+            touch-action: pan-y;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-amberGlow selection:text-white">
+
+    <!-- GÜVENLİK UYARISI BİLDİRİMİ (F12 / SAĞ TIK ENGELİ) -->
+    <div id="security-alert" class="fixed top-20 right-4 z-[120] hidden items-center gap-2.5 px-4 py-3 rounded-2xl bg-obsidian/95 border border-amberGlow/50 text-xs font-mono text-white shadow-2xl backdrop-blur-xl">
+        <i class="fa-solid fa-shield-halved text-amberGlow"></i>
+        <span>GÜVENLİK PROTOKOLÜ: Kaynak kodu korumalıdır.</span>
+    </div>
+
+    <!-- Subtle Custom Cursor Follower Glow -->
+    <div id="cursor-spotlight" class="fixed pointer-events-none inset-0 z-30 transition-opacity duration-300 opacity-70" style="background: radial-gradient(650px circle at var(--cursor-x) var(--cursor-y), rgba(255, 85, 0, 0.055), transparent 40%);">
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- YENİ NESİL ŞIK & SADE ÜST BAR (FLOATING GLASS PILL NAVBAR)            -->
+    <!-- ===================================================================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 pt-3 sm:pt-4 pointer-events-none">
+        <div class="max-w-6xl mx-auto cyber-card rounded-2xl px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between pointer-events-auto shadow-2xl border border-white/10">
+            
+            <!-- Sol: Marka & İsim -->
+            <a href="#hero" class="flex items-center gap-3 group shrink-0">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amberGlow to-amber-600 flex items-center justify-center shadow-lg shadow-amberGlow/25 group-hover:rotate-12 transition-transform">
+                    <span class="font-display font-extrabold text-black text-base">CB</span>
+                </div>
+                <div>
+                    <span class="font-tech font-bold tracking-wider text-white text-xs sm:text-sm block leading-none">CEM MİRAÇ BARAÇ</span>
+                    <span class="text-[9px] font-mono text-amberGlow tracking-widest uppercase">AI // FULL-STACK // 3D</span>
+                </div>
+            </a>
+
+            <!-- Orta: Sadeleştirilmiş Ana Menü -->
+            <nav class="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/10 rounded-full px-2 py-1">
+                <a href="#hero" class="px-3.5 py-1.5 rounded-full text-xs font-mono text-gray-300 hover:text-amberGlow transition">Silüet</a>
+                <a href="#matrix" class="px-3.5 py-1.5 rounded-full text-xs font-mono text-gray-300 hover:text-amberGlow transition">Yetenek</a>
+                <a href="#projects" class="px-3.5 py-1.5 rounded-full text-xs font-mono text-gray-300 hover:text-amberGlow transition">Projeler</a>
+                <a href="#github" class="px-3.5 py-1.5 rounded-full text-xs font-mono text-gray-300 hover:text-amberGlow transition">GitHub</a>
+                <a href="#ailab" class="px-3.5 py-1.5 rounded-full text-xs font-mono text-gray-300 hover:text-amberGlow transition">AI Lab</a>
+            </nav>
+
+            <!-- Sağ: Tema Değiştirici + Ses + İletişim -->
+            <div class="flex items-center gap-2">
+                <!-- Aydınlık / Karanlık Tema Butonu -->
+                <button id="theme-toggle-btn" onclick="toggleThemeMode()" title="Aydınlık / Karanlık Tema" class="w-9 h-9 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amberGlow/50 text-gray-300 flex items-center justify-center transition">
+                    <i id="theme-icon" class="fa-solid fa-sun text-goldGlow text-xs"></i>
+                </button>
+
+                <!-- Siber Ses Efektleri Butonu -->
+                <button id="sound-toggle" onclick="toggleAudioSynth()" title="Siber Ses Efektlerini Aç/Kapat" class="w-9 h-9 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amberGlow/50 text-gray-300 flex items-center justify-center transition">
+                    <i id="sound-icon" class="fa-solid fa-volume-xmark text-gray-400 text-xs"></i>
+                </button>
+
+                <!-- İletişim CTA -->
+                <a href="#contact" class="hidden sm:flex h-9 px-4 rounded-xl bg-gradient-to-r from-amberGlow to-orange-600 hover:from-orange-500 hover:to-amberGlow text-black font-mono font-bold text-xs tracking-wider items-center gap-1.5 shadow-lg shadow-amberGlow/25 transition">
+                    <span>İLETİŞİM</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+
+                <!-- Mobil Hamburger Menü Butonu -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menüyü Aç" class="md:hidden w-9 h-9 rounded-xl border border-white/15 bg-white/[0.04] text-white flex items-center justify-center hover:border-amberGlow transition">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobil Açılır Menü -->
+        <div id="mobile-menu-drawer" class="md:hidden hidden max-w-6xl mx-auto mt-2 cyber-card rounded-2xl p-4 space-y-3 pointer-events-auto border border-white/10 shadow-2xl">
+            <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+                <a href="#hero" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-gray-200 flex items-center gap-2">
+                    <span class="text-amberGlow">01.</span> 3D Silüet
+                </a>
+                <a href="#matrix" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-gray-200 flex items-center gap-2">
+                    <span class="text-amberGlow">02.</span> Yetenekler
+                </a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-gray-200 flex items-center gap-2">
+                    <span class="text-amberGlow">03.</span> Projelerim
+                </a>
+                <a href="#github" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-gray-200 flex items-center gap-2">
+                    <span class="text-amberGlow">04.</span> GitHub
+                </a>
+                <a href="#ailab" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-white/[0.03] border border-white/10 text-gray-200 flex items-center gap-2">
+                    <span class="text-cyberCyan">05.</span> AI Lab
+                </a>
+                <button onclick="toggleMobileMenu(); openSocialModal();" class="p-3 rounded-xl bg-amberGlow/15 border border-amberGlow/40 text-amberGlow flex items-center gap-2 text-left">
+                    <i class="fa-solid fa-share-nodes"></i> Takip Et
+                </button>
+            </div>
+            <a href="#contact" onclick="toggleMobileMenu()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amberGlow to-orange-600 text-black font-mono font-bold text-xs flex items-center justify-center gap-2">
+                <span>İletişime Geç</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- 1. HERO SECTION: MASSIVE "DEVELOPER" BACKDROP + 3D SAND PARTICLE BUST -->
+    <!-- ===================================================================== -->
+    <section id="hero" class="relative w-full min-h-[100svh] flex flex-col items-center justify-between overflow-hidden select-none pt-24 pb-8">
+        
+        <!-- Ambient Radial Glow behind the 3D Silhouette -->
+        <div id="hero-ambient" class="bust-ambient-glow absolute inset-0 pointer-events-none z-0"></div>
+        
+        <!-- Subtle Cyber Grid Background -->
+        <div class="absolute inset-0 pointer-events-none opacity-[0.06]" style="background-image: linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px); background-size: 60px 60px;">
+        </div>
+
+        <!-- Top Telemetry & Backdrop Switcher Row -->
+        <div class="relative z-30 w-full max-w-6xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-2">
+            <!-- Left HUD Status -->
+            <div class="flex flex-col gap-0.5 font-mono text-[10px] sm:text-[11px] text-gray-400">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="text-emerald-400 font-semibold">SİSTEM AKTİF // İSTANBUL, TR</span>
+                    <span id="hud-fps" class="px-1.5 py-0.5 rounded bg-white/5 text-emerald-400 text-[9px]">60 FPS</span>
+                </div>
+                <div class="hidden sm:block">PARÇACIK MOTORU: <span id="hud-particle-count" class="text-amberGlow font-bold">8.500</span> ADET // EKSEN: <span id="hud-coords" class="text-white">X: 0.00 | Y: 0.00</span></div>
+            </div>
+
+            <!-- Right Backdrop Role Switcher Pill -->
+            <div class="flex items-center gap-1 sm:gap-1.5 bg-obsidian/70 border border-white/10 backdrop-blur-md px-2.5 py-1 rounded-full">
+                <span class="hidden sm:inline text-[10px] font-mono text-gray-400">ARKA PLAN:</span>
+                <button onclick="setBackdropWord('DEVELOPER')" class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-amberGlow/20 text-amberGlow border border-amberGlow/40 hover:bg-amberGlow hover:text-black transition">DEVELOPER</button>
+                <button onclick="setBackdropWord('AI ARCHITECT')" class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-gray-300 hover:bg-white/15 transition">AI ARCHITECT</button>
+                <button onclick="setBackdropWord('DESIGNER')" class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-gray-300 hover:bg-white/15 transition">DESIGNER</button>
+            </div>
+        </div>
+
+        <!-- LAYER 1: MASSIVE METALLIC "DEVELOPER" TEXT IN BACKGROUND[cite: 1] -->
+        <div class="relative z-10 w-full my-auto flex flex-col items-center justify-center pointer-events-none px-2 -mt-6 sm:mt-0">
+            <h1 id="backdrop-word" class="hero-backdrop-text text-center tracking-tighter">DEVELOPER</h1>
+        </div>
+
+        <!-- LAYER 2: 3D INTERACTIVE SAND PARTICLE SILHOUETTE CANVAS[cite: 1] -->
+        <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-auto">
+            <canvas id="sand-bust-canvas" class="w-full h-full cursor-crosshair"></canvas>
+        </div>
+
+        <!-- Horizontal Optical Flare Line[cite: 1] -->
+        <div class="absolute top-[44%] sm:top-[47%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amberGlow/40 to-transparent pointer-events-none z-20 blur-[0.5px]"></div>
+
+        <!-- LAYER 3: FOREGROUND CONTROLS & "REVEAL" BUTTON[cite: 1] -->
+        <div class="relative z-30 w-full max-w-xl mx-auto flex flex-col items-center gap-3 px-4 text-center mt-auto pt-44 sm:pt-56">
+            
+            <!-- Interactive Control Bar: REVEAL + Sand Hourglass Reset + Mobile Gyroscope Toggle -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                <button id="reveal-btn" onclick="cycleParticleMode()" class="reveal-pill px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-mono text-[11px] sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amberGlow animate-pulse"></i>
+                    <span id="reveal-btn-text">REVEAL // SİBER SİLÜET</span>
+                </button>
+
+                <button onclick="triggerHourglassSandFall()" class="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-obsidian/80 hover:bg-white/[0.1] border border-white/15 font-mono text-[11px] sm:text-xs text-gray-200 hover:text-amberGlow flex items-center gap-1.5 backdrop-blur-md transition cursor-pointer" title="Parçacıkları kum saati gibi yukarıdan tekrar dök">
+                    <i class="fa-solid fa-hourglass-half text-amberGlow"></i>
+                    <span>KUM SAATİ</span>
+                </button>
+
+                <button id="gyro-btn" onclick="enableMobileGyroscope()" class="sm:hidden px-3 py-2 rounded-full bg-obsidian/80 border border-cyberCyan/30 font-mono text-[11px] text-cyberCyan flex items-center gap-1.5 backdrop-blur-md">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span id="gyro-btn-text">SENSÖR</span>
+                </button>
+            </div>
+
+            <!-- Bio Tagline & Quick CTA -->
+            <div class="w-full bg-obsidian/80 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 shadow-2xl">
+                <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                    Merhaba, ben <strong class="text-white font-semibold">Cem Miraç Baraç</strong>. 
+                    <span class="text-amberGlow">Yapay Zeka Otomasyonları</span>, <span class="text-goldGlow">Full-Stack Sistemler</span> ve <span class="text-cyberCyan">3D Görsel Tasarım</span> disiplinlerini tek bir mühendislik çatısında birleştiriyorum.
+                </p>
+                <div class="mt-1.5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-[11px] font-mono text-gray-400">
+                    <span><i class="fa-solid fa-hand-pointer text-amberGlow mr-1"></i>Dokun / Sürükle: Kafayı Çevir</span>
+                    <span>•</span>
+                    <span><i class="fa-solid fa-bolt text-amberGlow mr-1"></i>Tıkla: Kum Dalgalandır</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 2. "NEDEN BENİMLE ÇALIŞMALISINIZ?" — 3-PILLAR SYNERGY & TELEMETRY      -->
+    <!-- ===================================================================== -->
+    <section id="matrix" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="reveal-on-scroll text-center max-w-3xl mx-auto mb-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amberGlow/10 border border-amberGlow/30 text-amberGlow font-mono text-xs mb-4">
+                <i class="fa-solid fa-microchip"></i>
+                <span>HİBRİT MÜHENDİSLİK & TASARIM FELSEFESİ</span>
+            </div>
+            <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+                Üç Disiplin. <span class="text-transparent bg-clip-text bg-gradient-to-r from-amberGlow via-goldGlow to-cyberCyan">Tek Otonom Güç.</span>
+            </h2>
+            <p class="mt-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+                Sadece kod yazan bir yazılımcı veya sadece ekran çizen bir tasarımcı değilim. 
+                Bir ürünü <strong class="text-white">veritabanı mimarisinden</strong>, <strong class="text-white">yapay zeka ajanlarına</strong> ve <strong class="text-white">kullanıcıyı büyüleyen 3D arayüzüne</strong> kadar uçtan uca inşa ediyorum.
+            </p>
+        </div>
+
+        <!-- Interactive Impact Metrics Strip -->
+        <div class="reveal-on-scroll grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            <div class="cyber-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="text-xs font-mono text-gray-400 uppercase">AKTİF SİSTEM & PROJE</div>
+                <div class="mt-2 font-display text-4xl font-extrabold text-white group-hover:text-amberGlow transition">25+</div>
+                <div class="mt-1 text-xs text-emerald-400 font-mono flex items-center gap-1">
+                    <i class="fa-solid fa-bolt"></i> Production & Açık Kaynak
+                </div>
+            </div>
+            <div class="cyber-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="text-xs font-mono text-gray-400 uppercase">AI & OTOMASYON HIZI</div>
+                <div class="mt-2 font-display text-4xl font-extrabold text-white group-hover:text-goldGlow transition">%85</div>
+                <div class="mt-1 text-xs text-amberGlow font-mono">Operasyonel Zaman Tasarrufu</div>
+            </div>
+            <div class="cyber-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="text-xs font-mono text-gray-400 uppercase">ÇOKLU KİRACI (MULTI-TENANT)</div>
+                <div class="mt-2 font-display text-4xl font-extrabold text-white group-hover:text-cyberCyan transition">99.9%</div>
+                <div class="mt-1 text-xs text-cyberCyan font-mono">Gerçek Zamanlı Mesaj & API Uptime</div>
+            </div>
+            <div class="cyber-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="text-xs font-mono text-gray-400 uppercase">KOD & TASARIM SİNERJİSİ</div>
+                <div class="mt-2 font-display text-4xl font-extrabold text-white group-hover:text-neonPurple transition">360°</div>
+                <div class="mt-1 text-xs text-purple-400 font-mono">Full-Stack + AI + Motion UX</div>
+            </div>
+        </div>
+
+        <!-- 3 Core Pillars with Interactive Radar Parameters -->
+        <div class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Pillar 1: Full-Stack & Cyber Systems -->
+            <div class="cyber-card rounded-2xl p-7 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -right-8 -top-8 w-32 h-32 bg-amberGlow/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-amberGlow/15 border border-amberGlow/40 flex items-center justify-center text-amberGlow text-xl mb-5">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <span class="font-mono text-xs text-amberGlow uppercase tracking-wider">01 // YAZILIM & SİSTEM MİMARİSİ</span>
+                    <h3 class="font-tech text-2xl font-bold text-white mt-1">Full-Stack & Siber Mühendislik</h3>
+                    <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+                        Node.js, Python, React ve React Native (Expo) ile yüksek trafikli SaaS platformları, gerçek zamanlı WebSocket sistemleri ve siber güvenlik/OSINT araçları geliştiriyorum.
+                    </p>
+                </div>
+
+                <div class="mt-6 space-y-3 border-t border-white/10 pt-5">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Node.js / TypeScript / Next.js</span>
+                            <span class="text-amberGlow">96%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-amberGlow to-goldGlow rounded-full" style="width: 96%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Python / Otomasyon / OSINT</span>
+                            <span class="text-amberGlow">94%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-amberGlow to-goldGlow rounded-full" style="width: 94%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">React Native (Mobil) & Linux</span>
+                            <span class="text-amberGlow">90%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-amberGlow to-goldGlow rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 2: AI Engineering & Autonomous Workflows -->
+            <div class="cyber-card rounded-2xl p-7 flex flex-col justify-between relative overflow-hidden border-amberGlow/30">
+                <div class="absolute -right-8 -top-8 w-36 h-36 bg-cyberCyan/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-cyberCyan/15 border border-cyberCyan/40 flex items-center justify-center text-cyberCyan text-xl mb-5">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <span class="font-mono text-xs text-cyberCyan uppercase tracking-wider">02 // YAPAY ZEKA & OTONOM AJANLAR</span>
+                    <h3 class="font-tech text-2xl font-bold text-white mt-1">AI Architect & LLM Sistemleri</h3>
+                    <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+                        Gemini, OpenAI, ElevenLabs ses sentezi ve n8n iş akışlarıyla kendi kendine karar veren sesli asistanlar, RAG bellek sistemleri ve algoritmik veri analiz motorları kuruyorum.
+                    </p>
+                </div>
+
+                <div class="mt-6 space-y-3 border-t border-white/10 pt-5">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">LLM Entegrasyonu (Gemini / GPT / RAG)</span>
+                            <span class="text-cyberCyan">98%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cyberCyan to-blue-500 rounded-full" style="width: 98%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">n8n / Otonom Ajan & Bot Orkestrasyonu</span>
+                            <span class="text-cyberCyan">95%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cyberCyan to-blue-500 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Gerçek Zamanlı Sesli AI & Veri İşleme</span>
+                            <span class="text-cyberCyan">92%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-cyberCyan to-blue-500 rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 3: Visual Design, 3D WebGL & Motion -->
+            <div class="cyber-card rounded-2xl p-7 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -right-8 -top-8 w-32 h-32 bg-neonPurple/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-neonPurple/15 border border-neonPurple/40 flex items-center justify-center text-neonPurple text-xl mb-5">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <span class="font-mono text-xs text-neonPurple uppercase tracking-wider">03 // KREATİF UI/UX & MOTION</span>
+                    <h3 class="font-tech text-2xl font-bold text-white mt-1">Grafik, 3D Web & Görsel Efekt</h3>
+                    <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+                        Kullanıcıyı sitede tutan yüksek enerjili UI/UX tasarımlar, Three.js / Canvas parçacık simülasyonları, Premiere Pro 3D kamera takibi ve dinamik tipografi prodüksiyonları.
+                    </p>
+                </div>
+
+                <div class="mt-6 space-y-3 border-t border-white/10 pt-5">
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">İnteraktif UI/UX & WebGL / Canvas</span>
+                            <span class="text-neonPurple">95%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neonPurple to-pink-500 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Premiere Pro / 3D Kamera & VFX</span>
+                            <span class="text-neonPurple">93%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neonPurple to-pink-500 rounded-full" style="width: 93%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-mono mb-1">
+                            <span class="text-gray-300">Algoritmik Sanat & Marka Kimliği</span>
+                            <span class="text-neonPurple">91%</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-neonPurple to-pink-500 rounded-full" style="width: 91%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. INTERACTIVE TABBED PROJECT SHOWCASE + DEEP-DIVE POP-UP MODALS      -->
+    <!-- ===================================================================== -->
+    <section id="projects" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        
+        <div class="reveal-on-scroll flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amberGlow/10 border border-amberGlow/30 text-amberGlow font-mono text-xs mb-3">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>SEÇKİN MÜHENDİSLİK & TASARIM VİTRİNİ</span>
+                </div>
+                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white">
+                    Üretimdeki <span class="text-amberGlow">Projelerim</span>
+                </h2>
+            </div>
+
+            <!-- Collapsible / Filterable Category Tabs -->
+            <div id="project-tabs" class="flex overflow-x-auto no-scrollbar gap-2 bg-charcoal p-1.5 rounded-2xl border border-white/10 max-w-full">
+                <button onclick="filterProjects('all')" data-tab="all" class="tab-btn active-tab shrink-0 px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-amberGlow text-black transition">
+                    TÜMÜ (6)
+                </button>
+                <button onclick="filterProjects('ai')" data-tab="ai" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs font-mono text-gray-300 hover:text-white transition">
+                    YAPAY ZEKA & OTOMASYON
+                </button>
+                <button onclick="filterProjects('fullstack')" data-tab="fullstack" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs font-mono text-gray-300 hover:text-white transition">
+                    FULL-STACK & SİSTEM
+                </button>
+                <button onclick="filterProjects('cyber')" data-tab="cyber" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs font-mono text-gray-300 hover:text-white transition">
+                    SİBER & OSINT
+                </button>
+                <button onclick="filterProjects('motion')" data-tab="motion" class="tab-btn shrink-0 px-4 py-2 rounded-xl text-xs font-mono text-gray-300 hover:text-white transition">
+                    MOTION & TASARIM
+                </button>
+            </div>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. LIVE GITHUB TELEMETRY & 52-WEEK CONTRIBUTION HEATMAP               -->
+    <!-- ===================================================================== -->
+    <section id="github" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="reveal-on-scroll cyber-card rounded-3xl p-6 sm:p-10 border border-white/10 relative overflow-hidden">
+            
+            <!-- Header & Live API Fetcher -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-white/10">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 mb-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>GITHUB CANLI TELEMETRİ & AÇIK KAYNAK MATRİSİ</span>
+                    </div>
+                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white flex items-center gap-3">
+                        <i class="fa-brands fa-github text-white"></i>
+                        <span>Kod Üretim İstatistikleri</span>
+                    </h2>
+                    <p class="text-sm text-gray-400 mt-1">
+                        GitHub kullanıcı adınızı girerek gerçek zamanlı API verilerinizi bağlayabilir veya mevcut mühendislik metriklerini inceleyebilirsiniz.
+                    </p>
+                </div>
+
+                <!-- Live GitHub API Sync Box -->
+                <div class="flex items-center gap-2 bg-obsidian/90 p-2 rounded-xl border border-white/15">
+                    <i class="fa-brands fa-github text-gray-400 pl-2"></i>
+                    <input id="github-username-input" type="text" value="cemmiracbarac" placeholder="GitHub kullanıcı adı..." class="bg-transparent text-xs font-mono text-white focus:outline-none w-40 sm:w-48">
+                    <button onclick="fetchLiveGitHubStats()" class="px-3 py-2 rounded-lg bg-amberGlow hover:bg-orange-500 text-black font-mono font-bold text-xs transition flex items-center gap-1.5">
+                        <i id="gh-sync-icon" class="fa-solid fa-rotate"></i>
+                        <span>CANLI ÇEK</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- GitHub Metric Boxes -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-8">
+                <div class="bg-obsidian/70 border border-white/5 rounded-2xl p-4">
+                    <div class="text-[11px] font-mono text-gray-400">TOPLAM REPOSITORY</div>
+                    <div id="gh-repos" class="font-display text-3xl font-bold text-white mt-1">34</div>
+                    <div class="text-[11px] font-mono text-emerald-400 mt-1">+6 Bu Çeyrekte</div>
+                </div>
+                <div class="bg-obsidian/70 border border-white/5 rounded-2xl p-4">
+                    <div class="text-[11px] font-mono text-gray-400">YILLIK COMMIT / KATKI</div>
+                    <div id="gh-commits" class="font-display text-3xl font-bold text-amberGlow mt-1">1,482</div>
+                    <div class="text-[11px] font-mono text-gray-400 mt-1">Aktif Seri: 42 Gün</div>
+                </div>
+                <div class="bg-obsidian/70 border border-white/5 rounded-2xl p-4">
+                    <div class="text-[11px] font-mono text-gray-400">YILDIZ & FORK ETKİSİ</div>
+                    <div id="gh-stars" class="font-display text-3xl font-bold text-goldGlow mt-1">218</div>
+                    <div class="text-[11px] font-mono text-gray-400 mt-1">Açık Kaynak Araçlar</div>
+                </div>
+                <div class="bg-obsidian/70 border border-white/5 rounded-2xl p-4">
+                    <div class="text-[11px] font-mono text-gray-400">ANA DİL EKOSİSTEMİ</div>
+                    <div id="gh-top-lang" class="font-display text-2xl font-bold text-cyberCyan mt-1">TS / Python</div>
+                    <div id="gh-status-msg" class="text-[11px] font-mono text-emerald-400 mt-1">API Senkronize Hazır</div>
+                </div>
+            </div>
+
+            <!-- 52-Week Contribution Heatmap Matrix -->
+            <div class="bg-obsidian/80 border border-white/10 rounded-2xl p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-mono text-gray-300">52 HAFTALIK KODLAMA YOĞUNLUĞU (ÜZERİNE GELİN)</span>
+                    <div class="flex items-center gap-1.5 text-[10px] font-mono text-gray-400">
+                        <span>Az</span>
+                        <span class="w-3 h-3 rounded-sm bg-white/5 inline-block"></span>
+                        <span class="w-3 h-3 rounded-sm bg-amberGlow/30 inline-block"></span>
+                        <span class="w-3 h-3 rounded-sm bg-amberGlow/60 inline-block"></span>
+                        <span class="w-3 h-3 rounded-sm bg-amberGlow inline-block"></span>
+                        <span class="w-3 h-3 rounded-sm bg-goldGlow inline-block"></span>
+                        <span>Yoğun</span>
+                    </div>
+                </div>
+                <div id="heatmap-container" class="overflow-x-auto pb-2">
+                    <div id="heatmap-grid" class="inline-grid grid-rows-7 grid-flow-col gap-1 min-w-[720px]"></div>
+                </div>
+                <div id="heatmap-tooltip" class="text-xs font-mono text-amberGlow mt-2 h-4">
+                    Hücrelerin üzerine gelerek günlük commit ve otomasyon aktivitelerini inceleyin.
+                </div>
+            </div>
+
+            <!-- Language Distribution Bar -->
+            <div class="mt-6">
+                <div class="flex justify-between text-xs font-mono text-gray-400 mb-2">
+                    <span>KOD TABANI DİL DAĞILIMI</span>
+                    <span>TypeScript / Node.js (42%) • Python / AI (34%) • React / RN (16%) • Shell / C# (8%)</span>
+                </div>
+                <div class="w-full h-3 rounded-full bg-obsidian overflow-hidden flex p-0.5 border border-white/10">
+                    <div class="h-full bg-amberGlow rounded-l-full" style="width: 42%" title="TypeScript & Node.js"></div>
+                    <div class="h-full bg-cyberCyan" style="width: 34%" title="Python & AI"></div>
+                    <div class="h-full bg-neonPurple" style="width: 16%" title="React & React Native"></div>
+                    <div class="h-full bg-emerald-400 rounded-r-full" style="width: 8%" title="Linux Bash & Systems"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. INTERACTIVE AI ARCHITECT LAB (TEST MY AI TWIN & ARCHITECTURE GEN)  -->
+    <!-- ===================================================================== -->
+    <section id="ailab" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="reveal-on-scroll grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Left Column: Explanation & Preset Prompts -->
+            <div class="lg:col-span-5 flex flex-col justify-between">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyberCyan/10 border border-cyberCyan/30 text-cyberCyan font-mono text-xs mb-4">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span>CANLI YAPAY ZEKA LABORATUVARI</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white">
+                        Dijital İkizimle <span class="text-cyberCyan">Mimari Tasarlayın</span>
+                    </h2>
+                    <p class="mt-4 text-sm text-gray-400 leading-relaxed">
+                        Ziyaretçileriniz veya potansiyel müşterileriniz burada aklındaki projeyi yazar; yapay zeka asistanım ise benim mühendislik yaklaşımımla <strong class="text-white">Sistem Mimarisini, Teknoloji Yığınını ve Tahmini Teslim Süresini</strong> saniyeler içinde çıkarır.
+                    </p>
+
+                    <div class="mt-6 space-y-2.5">
+                        <div class="text-xs font-mono text-gray-400 uppercase">HIZLI SENARYO TESTLERİ (TIKLAYIN):</div>
+                        <button onclick="runAiScenario('logistics')" class="w-full text-left p-3 rounded-xl bg-white/[0.03] hover:bg-amberGlow/15 border border-white/10 hover:border-amberGlow/40 text-xs font-mono text-gray-200 transition flex items-center justify-between">
+                            <span>🚚 "SevkGo benzeri çok kullanıcılı WhatsApp/SMS otomasyonlu lojistik sistemi kurmak istiyorum."</span>
+                            <i class="fa-solid fa-chevron-right text-amberGlow"></i>
+                        </button>
+                        <button onclick="runAiScenario('voiceai')" class="w-full text-left p-3 rounded-xl bg-white/[0.03] hover:bg-cyberCyan/15 border border-white/10 hover:border-cyberCyan/40 text-xs font-mono text-gray-200 transition flex items-center justify-between">
+                            <span>🎙️ "Şirketimiz için gerçek zamanlı konuşan 3D sesli yapay zeka müşteri temsilcisi."</span>
+                            <i class="fa-solid fa-chevron-right text-cyberCyan"></i>
+                        </button>
+                        <button onclick="runAiScenario('cyber')" class="w-full text-left p-3 rounded-xl bg-white/[0.03] hover:bg-neonPurple/15 border border-white/10 hover:border-neonPurple/40 text-xs font-mono text-gray-200 transition flex items-center justify-between">
+                            <span>🛡️ "Mobil ve masaüstünde çalışan OSINT & siber güvenlik tarama uygulaması."</span>
+                            <i class="fa-solid fa-chevron-right text-neonPurple"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 rounded-2xl bg-amberGlow/5 border border-amberGlow/20 text-xs text-gray-300 font-mono">
+                    <i class="fa-solid fa-bolt text-amberGlow mr-1"></i>
+                    Özel kurumsal yapay zeka entegrasyonu ve anahtar teslim SaaS mimarileri için doğrudan aşağıdan iletişime geçebilirsiniz.
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Cyber Terminal -->
+            <div class="lg:col-span-7 cyber-card rounded-3xl border border-white/15 flex flex-col overflow-hidden shadow-2xl">
+                <!-- Terminal Window Bar -->
+                <div class="bg-obsidian px-4 py-3 border-b border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        <span class="ml-2 font-mono text-xs text-gray-400">cem-ai-architect@core:~# neural-planner</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyberCyan/15 text-cyberCyan">GEMINI-2.5-PRO ENGINE</span>
+                </div>
+
+                <!-- Terminal Chat Output -->
+                <div id="ai-terminal-output" class="p-5 font-mono text-xs sm:text-sm space-y-4 h-[360px] overflow-y-auto bg-obsidian/60">
+                    <div class="text-gray-400">
+                        <span class="text-emerald-400">[SİSTEM BAŞLATILDI]</span> Cem Miraç Baraç Dijital Mimari Asistanı aktif.
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-gray-200 leading-relaxed">
+                        Merhaba! Ben Cem'in eğitilmiş mimari asistanıyım. Bana geliştirmek istediğiniz <span class="text-amberGlow">yazılım, yapay zeka otomasyonu veya kreatif web projesini</span> yazın; size nasıl bir mimariyle çözüm üreteceğimizi anında simüle edeyim.
+                    </div>
+                </div>
+
+                <!-- Terminal Input Bar -->
+                <form onsubmit="handleCustomAiPrompt(event)" class="p-3 bg-obsidian border-t border-white/10 flex items-center gap-2">
+                    <span class="text-amberGlow font-mono font-bold pl-2">&gt;</span>
+                    <input id="ai-custom-input" type="text" placeholder="Proje fikrinizi veya sorunuzu buraya yazın..." class="flex-1 bg-transparent text-xs sm:text-sm font-mono text-white focus:outline-none px-2">
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-cyberCyan hover:bg-cyan-300 text-black font-mono font-bold text-xs transition">
+                        ANALİZ ET
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. NEXT-GEN INTERACTIVE CONTACT & PROJECT ESTIMATOR                   -->
+    <!-- ===================================================================== -->
+    <section id="contact" class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/5">
+        <div class="reveal-on-scroll cyber-card rounded-3xl p-6 sm:p-12 border border-amberGlow/30 relative overflow-hidden">
+            <div class="absolute -right-24 -bottom-24 w-96 h-96 bg-amberGlow/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Left Info -->
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs mb-4">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>YENİ PROJELER İÇİN MÜSAİT</span>
+                        </div>
+                        <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                            Bir Sonraki Büyük Ürünü <span class="text-amberGlow">Birlikte Kuralım.</span>
+                        </h2>
+                        <p class="mt-4 text-gray-400 text-sm leading-relaxed">
+                            İster çok kiracılı bir SaaS platformu, ister şirket içi otonom yapay zeka asistanı, ister markanızı uçuracak 3D interaktif bir web deneyimi olsun; doğru yerdesiniz.
+                        </p>
+                    </div>
+
+                    <!-- Direct Contact Channels -->
+                    <div class="mt-8 space-y-3">
+                        <div onclick="copyEmailAddress()" class="cursor-pointer group p-4 rounded-2xl bg-obsidian/80 border border-white/10 hover:border-amberGlow flex items-center justify-between transition">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-amberGlow/15 text-amberGlow flex items-center justify-center">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-mono text-gray-400">DOĞRUDAN E-POSTA (KOPYALAMAK İÇİN TIKLA)</div>
+                                    <div id="email-text" class="font-mono text-sm text-white group-hover:text-amberGlow transition">iletisim@cemmiracbarac.dev</div>
+                                </div>
+                            </div>
+                            <i class="fa-regular fa-copy text-gray-400 group-hover:text-amberGlow"></i>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-obsidian/80 border border-white/10 hover:border-white/40 flex items-center justify-center gap-2 text-xs font-mono text-gray-300 hover:text-white transition">
+                                <i class="fa-brands fa-github text-base"></i> GitHub
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-obsidian/80 border border-white/10 hover:border-cyberCyan/50 flex items-center justify-center gap-2 text-xs font-mono text-gray-300 hover:text-cyberCyan transition">
+                                <i class="fa-brands fa-linkedin text-base"></i> LinkedIn
+                            </a>
+                            <button type="button" onclick="openSocialModal()" class="p-3 rounded-xl bg-obsidian/80 border border-white/10 hover:border-amberGlow/50 flex items-center justify-center gap-2 text-xs font-mono text-gray-300 hover:text-amberGlow transition">
+                                <i class="fa-brands fa-instagram text-base"></i> Sosyal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Configurator Form -->
+                <div class="lg:col-span-7 bg-obsidian/90 rounded-2xl p-6 sm:p-8 border border-white/10">
+                    <form onsubmit="submitProjectBrief(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-gray-400 mb-3">1. İHTİYAÇ DUYULAN UZMANLIK ALANLARI (BİRDEN FAZLA SEÇEBİLİRSİNİZ)</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                <button type="button" onclick="toggleServicePill(this)" class="service-pill active-pill p-3 rounded-xl border border-amberGlow bg-amberGlow/20 text-white font-mono text-xs text-center transition">
+                                    🤖 Yapay Zeka & LLM
+                                </button>
+                                <button type="button" onclick="toggleServicePill(this)" class="service-pill p-3 rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 font-mono text-xs text-center transition">
+                                    ⚡ Full-Stack SaaS
+                                </button>
+                                <button type="button" onclick="toggleServicePill(this)" class="service-pill p-3 rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 font-mono text-xs text-center transition">
+                                    🎨 3D Web & Motion
+                                </button>
+                                <button type="button" onclick="toggleServicePill(this)" class="service-pill p-3 rounded-xl border border-white/10 bg-white/[0.03] text-gray-300 font-mono text-xs text-center transition">
+                                    🛡️ Siber / Otomasyon
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Scope Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-mono mb-2">
+                                <span class="text-gray-400">2. PROJE ÖLÇEĞİ & HIZ BEKLENTİSİ:</span>
+                                <span id="scope-label" class="text-amberGlow font-bold">Orta Ölçekli SaaS / AI MVP (3-5 Hafta)</span>
+                            </div>
+                            <input id="scope-slider" type="range" min="1" max="4" value="2" oninput="updateScopeLabel(this.value)" class="w-full">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1.5">ADINIZ / ŞİRKETİNİZ</label>
+                                <input required type="text" placeholder="Örn: Ahmet Yılmaz / TechCorp" class="w-full px-4 py-3 rounded-xl bg-charcoal border border-white/10 text-sm text-white focus:outline-none focus:border-amberGlow">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1.5">E-POSTA VEYA TELEFON</label>
+                                <input required type="text" placeholder="ahmet@sirket.com" class="w-full px-4 py-3 rounded-xl bg-charcoal border border-white/10 text-sm text-white focus:outline-none focus:border-amberGlow">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-gray-400 mb-1.5">PROJE DETAYLARI & HEDEFLERİNİZ</label>
+                            <textarea required rows="3" placeholder="Aklınızdaki sistemi, otomasyonu veya tasarımı kısaca anlatın..." class="w-full px-4 py-3 rounded-xl bg-charcoal border border-white/10 text-sm text-white focus:outline-none focus:border-amberGlow"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amberGlow via-orange-500 to-goldGlow text-black font-display font-extrabold text-sm tracking-wider uppercase shadow-xl shadow-amberGlow/25 hover:brightness-110 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <span>PROJE TALEBİNİ SİSTEME İLET</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+
+                        <div id="contact-toast" class="hidden p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-mono text-xs text-center">
+                            ✓ Mesajınız şifrelenerek Cem Miraç Baraç'ın iletişim kuyruğuna iletildi! En kısa sürede dönüş yapılacaktır.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-10 px-4 text-center font-mono text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>© 2026 CEM MİRAÇ BARAÇ. TÜM HAKLARI SAKLIDIR.</div>
+            <div class="flex items-center gap-4">
+                <button onclick="openSocialModal()" class="text-amberGlow hover:underline">SOSYAL MEDYA & TAKİP</button>
+                <span>•</span>
+                <a href="#hero" class="hover:text-white transition">YUKARI ÇIK ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SOL ALT YÜZEN "TAKİP ET" ROZETİ -->
+    <button onclick="openSocialModal()" class="fixed bottom-5 left-5 z-40 px-4 py-2.5 rounded-full cyber-card border border-amberGlow/40 hover:border-amberGlow flex items-center gap-2 shadow-2xl group transition">
+        <span class="w-2 h-2 rounded-full bg-amberGlow animate-ping"></span>
+        <span class="font-mono text-[11px] font-bold text-white group-hover:text-amberGlow transition">TAKİP ET</span>
+    </button>
+
+    <!-- ===================================================================== -->
+    <!-- DEEP-DIVE PROJECT POP-UP MODAL                                        -->
+    <!-- ===================================================================== -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-xl">
+        <div class="cyber-card w-full max-w-4xl max-h-[90vh] rounded-3xl border border-amberGlow/40 overflow-hidden flex flex-col shadow-2xl">
+            
+            <!-- Modal Top Bar -->
+            <div class="px-6 py-4 bg-obsidian border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <span id="modal-badge" class="px-2.5 py-1 rounded text-xs font-mono bg-amberGlow/20 text-amberGlow border border-amberGlow/30">PROJE DETAYI</span>
+                    <span id="modal-metrics" class="text-xs font-mono text-emerald-400"></span>
+                </div>
+                <button onclick="closeProjectModal()" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-rose-500/20 text-gray-400 hover:text-rose-400 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+                <div>
+                    <h3 id="modal-title" class="font-display text-2xl sm:text-4xl font-extrabold text-white"></h3>
+                    <p id="modal-subtitle" class="mt-2 text-gray-300 text-sm sm:text-base leading-relaxed"></p>
+                </div>
+
+                <!-- Interactive Modal Sub-Tabs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-obsidian/80 p-5 rounded-2xl border border-white/10">
+                        <div class="text-xs font-mono text-amberGlow uppercase mb-2">
+                            <i class="fa-solid fa-diagram-project mr-1"></i> SİSTEM MİMARİSİ & ÇÖZÜM
+                        </div>
+                        <p id="modal-architecture" class="text-xs sm:text-sm text-gray-300 leading-relaxed"></p>
+                        <div id="modal-tech-tags" class="mt-4 flex flex-wrap gap-1.5"></div>
+                    </div>
+
+                    <div class="bg-obsidian/80 p-5 rounded-2xl border border-white/10">
+                        <div class="text-xs font-mono text-cyberCyan uppercase mb-2">
+                            <i class="fa-solid fa-code mr-1"></i> GERÇEK KOD KESİTİ (PRODUCTION SNIPPET)
+                        </div>
+                        <pre class="text-[11px] font-mono text-emerald-300 overflow-x-auto bg-black/70 p-3.5 rounded-xl border border-white/5"><code id="modal-code"></code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 bg-obsidian border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                <div class="text-xs font-mono text-gray-400">
+                    Durum: <span class="text-emerald-400">Canlı Mimari & Doğrulanmış Proje</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="#contact" onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-amberGlow hover:bg-orange-500 text-black font-mono font-bold text-xs transition">
+                        BENZER BİR SİSTEM İSTİYORUM →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- "BENİ TAKİP ET" SOSYAL MEDYA POP-UP MODALI                            -->
+    <!-- ===================================================================== -->
+    <div id="social-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-xl">
+        <div class="cyber-card w-full max-w-md rounded-3xl border border-amberGlow/40 p-7 text-center relative shadow-2xl">
+            <button onclick="closeSocialModal()" class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-white/5 hover:bg-rose-500/20 text-gray-400 hover:text-rose-400 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amberGlow to-amber-600 mx-auto flex items-center justify-center shadow-lg shadow-amberGlow/25 mb-4">
+                <span class="font-display font-extrabold text-black text-xl">CB</span>
+            </div>
+
+            <span class="font-mono text-[11px] text-amberGlow uppercase tracking-widest block mb-1">DİJİTAL AĞA KATILIN</span>
+            <h3 class="font-display text-2xl font-extrabold text-white mb-2">Beni Takip Edin</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-6">
+                Geliştirdiğim yapay zeka sistemleri, açık kaynak kodlarım ve 3D görsel tasarımlarım için sosyal medya hesaplarımdan bağlantı kurabilirsiniz.
+            </p>
+
+            <div class="space-y-2.5 text-left font-mono text-xs mb-6">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-obsidian/80 border border-white/10 hover:border-amberGlow transition group">
+                    <span class="text-white group-hover:text-amberGlow transition"><i class="fa-brands fa-instagram mr-2 text-amberGlow"></i>Instagram</span>
+                    <span class="text-gray-400">@cemmiracbarac →</span>
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-obsidian/80 border border-white/10 hover:border-amberGlow transition group">
+                    <span class="text-white group-hover:text-amberGlow transition"><i class="fa-brands fa-github mr-2 text-white"></i>GitHub</span>
+                    <span class="text-gray-400">github.com/cemmiracbarac →</span>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-2xl bg-obsidian/80 border border-white/10 hover:border-cyberCyan transition group">
+                    <span class="text-white group-hover:text-cyberCyan transition"><i class="fa-brands fa-linkedin mr-2 text-cyberCyan"></i>LinkedIn</span>
+                    <span class="text-gray-400">Cem Miraç Baraç →</span>
+                </a>
+            </div>
+
+            <button onclick="closeSocialModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amberGlow to-orange-600 text-black font-mono font-bold text-xs tracking-wider uppercase transition">
+                SİTEYİ KEŞFETMEYE DEVAM ET
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT ENGINE: 3D HOURGLASS SAND PARTICLE BUST + UI LOGIC         -->
+    <!-- ===================================================================== -->
+    <script>
+        /***********************************************************************
+         * 0. TEMA GEÇİŞİ (DARK / LIGHT MODE) & GÜVENLİK KALKANI (F12 / SAĞ TIK)
+         ***********************************************************************/
+        let isLightMode = false;
+
+        function toggleThemeMode() {
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            isLightMode = !isLightMode;
+
+            if (isLightMode) {
+                htmlEl.classList.remove('dark');
+                htmlEl.classList.add('light');
+                icon.className = 'fa-solid fa-moon text-amberGlow text-xs';
+            } else {
+                htmlEl.classList.remove('light');
+                htmlEl.classList.add('dark');
+                icon.className = 'fa-solid fa-sun text-goldGlow text-xs';
+            }
+            playCyberTone(540, 0.07, 'sine');
+        }
+
+        function triggerSecurityAlert() {
+            const alertBox = document.getElementById('security-alert');
+            alertBox.classList.remove('hidden');
+            alertBox.classList.add('flex');
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+                alertBox.classList.remove('flex');
+            }, 2500);
+        }
+
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            triggerSecurityAlert();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (
+                e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) ||
+                (e.ctrlKey && ['U', 'S', 'u', 's'].includes(e.key))
+            ) {
+                e.preventDefault();
+                triggerSecurityAlert();
+            }
+        });
+
+        function openSocialModal() {
+            const m = document.getElementById('social-modal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function closeSocialModal() {
+            const m = document.getElementById('social-modal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        /***********************************************************************
+         * 1. WEB AUDIO SYNTHESIZER (Subtle Cyber Hover & Click Sound Effects)
+         ***********************************************************************/
+        let audioCtx = null;
+        let soundEnabled = false;
+
+        function toggleAudioSynth() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                icon.className = 'fa-solid fa-volume-high text-amberGlow text-xs';
+                playCyberTone(520, 0.08, 'sine');
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-gray-400 text-xs';
+            }
+        }
+
+        function playCyberTone(freq = 440, duration = 0.06, type = 'sine') {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        /***********************************************************************
+         * 2. 3D PARAMETRIC SAND PARTICLE SILHOUETTE ENGINE[cite: 1]
+         ***********************************************************************/
+        const canvas = document.getElementById('sand-bust-canvas');
+        const ctx = canvas.getContext('2d', { alpha: true });
+
+        let isMobileView = window.innerWidth < 768;
+        let PARTICLE_COUNT = isMobileView ? 5800 : 8500;
+        const particles = [];
+        let canvasWidth = window.innerWidth;
+        let canvasHeight = window.innerHeight;
+
+        let targetYaw = 0;
+        let targetPitch = 0;
+        let currentYaw = 0;
+        let currentPitch = 0;
+        let mouseScreenX = -9999;
+        let mouseScreenY = -9999;
+        let currentMode = 0;
+
+        function resizeCanvas() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            isMobileView = window.innerWidth < 768;
+            canvasWidth = canvas.parentElement.clientWidth;
+            canvasHeight = canvas.parentElement.clientHeight;
+            canvas.width = canvasWidth * dpr;
+            canvas.height = canvasHeight * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const countEl = document.getElementById('hud-particle-count');
+            if (countEl) countEl.textContent = PARTICLE_COUNT.toLocaleString('tr-TR');
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function generateBustPoint(index) {
+            const r = Math.random();
+            let x = 0, y = 0, z = 0;
+            let rimIntensity = 0.5;
+
+            if (r < 0.09) {
+                const u = Math.random() * Math.PI * 2;
+                const v = Math.acos(2 * Math.random() - 1);
+                const rad = 28 + Math.random() * 8;
+                x = rad * Math.sin(v) * Math.cos(u);
+                y = -175 + rad * 0.75 * Math.cos(v);
+                z = -12 + rad * Math.sin(v) * Math.sin(u);
+                rimIntensity = 0.85;
+            } else if (r < 0.54) {
+                const u = Math.random() * Math.PI * 2;
+                const v = Math.acos(2 * Math.random() - 1);
+                const shellBias = Math.pow(Math.random(), 0.22);
+
+                const verticalFactor = Math.cos(v);
+                const jawTaper = verticalFactor > 0.2 ? (1 - (verticalFactor - 0.2) * 0.38) : 1.0;
+
+                let rx = 74 * jawTaper * shellBias;
+                let ry = 94 * shellBias;
+                let rz = 80 * jawTaper * shellBias;
+
+                const hairWave = Math.sin(u * 9 + v * 6) * 3.5;
+                x = (rx + hairWave) * Math.sin(v) * Math.cos(u);
+                y = -82 + ry * Math.cos(v);
+                z = (rz + hairWave) * Math.sin(v) * Math.sin(u);
+
+                const normalizedEdge = Math.min(1, (Math.abs(x) / 72) * 0.85 + (1 - Math.abs(z) / 85) * 0.35);
+                rimIntensity = shellBias > 0.9 ? Math.max(0.35, normalizedEdge) : 0.18;
+            } else if (r < 0.66) {
+                const angle = Math.random() * Math.PI * 2;
+                const h = Math.random();
+                const shell = 0.78 + Math.random() * 0.22;
+                const radiusX = (36 + h * 10) * shell;
+                const radiusZ = (34 + h * 8) * shell;
+                x = Math.cos(angle) * radiusX;
+                y = 5 + h * 48;
+                z = Math.sin(angle) * radiusZ;
+                rimIntensity = Math.abs(Math.cos(angle)) * 0.8 + 0.2;
+            } else {
+                const t = (Math.random() - 0.5) * 2;
+                const depth = (Math.random() - 0.5) * 2;
+                const shoulderWidth = 225;
+                x = t * shoulderWidth;
+
+                const absT = Math.abs(t);
+                const slopeDrop = Math.pow(absT, 1.45) * 95;
+                const chestHeight = Math.random() * 88;
+                y = 46 + slopeDrop + chestHeight * (1 - absT * 0.35);
+
+                const thickness = (1 - absT * 0.45) * 58;
+                z = depth * thickness;
+
+                const isCollarEdge = Math.abs(Math.abs(x) - (38 + (y - 45) * 0.45)) < 14;
+                const isShoulderRim = chestHeight < 16 || absT > 0.82;
+                rimIntensity = (isCollarEdge || isShoulderRim) ? 0.95 : 0.42;
+            }
+
+            return { x, y, z, rimIntensity };
+        }
+
+        function generateNeuralPoint(index) {
+            const u = Math.random() * Math.PI * 2;
+            const v = Math.acos(2 * Math.random() - 1);
+            const hemi = index % 2 === 0 ? -1 : 1;
+            const r = 115 * Math.pow(Math.random(), 0.35);
+            const fold = Math.sin(u * 8) * Math.cos(v * 8) * 10;
+            const x = hemi * (22 + (r * 0.75 + fold) * Math.abs(Math.sin(v) * Math.cos(u)));
+            const y = -20 + (r * 0.85 + fold) * Math.cos(v);
+            const z = (r * 1.05 + fold) * Math.sin(v) * Math.sin(u);
+            return { x, y, z };
+        }
+
+        function generateVortexPoint(index) {
+            const angle = (index / PARTICLE_COUNT) * Math.PI * 28;
+            const radius = 35 + (index / PARTICLE_COUNT) * 210;
+            const x = Math.cos(angle) * radius;
+            const z = Math.sin(angle) * radius;
+            const y = Math.sin(radius * 0.05 - index * 0.01) * 65;
+            return { x, y, z };
+        }
+
+        function initParticles() {
+            particles.length = 0;
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const bust = generateBustPoint(i);
+                const neural = generateNeuralPoint(i);
+                const vortex = generateVortexPoint(i);
+
+                particles.push({
+                    x: (Math.random() - 0.5) * 40,
+                    y: -450 - Math.random() * 650,
+                    z: (Math.random() - 0.5) * 40,
+                    vx: 0,
+                    vy: 0,
+                    vz: 0,
+                    bustX: bust.x,
+                    bustY: bust.y,
+                    bustZ: bust.z,
+                    rim: bust.rimIntensity,
+                    neuralX: neural.x,
+                    neuralY: neural.y,
+                    neuralZ: neural.z,
+                    vortexX: vortex.x,
+                    vortexY: vortex.y,
+                    vortexZ: vortex.z,
+                    sandDelay: Math.random() * 65,
+                    size: Math.random() < 0.15 ? 2.1 : 1.35
+                });
+            }
+        }
+
+        function triggerHourglassSandFall() {
+            playCyberTone(320, 0.15, 'triangle');
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                const spread = Math.random() * 26;
+                const theta = Math.random() * Math.PI * 2;
+                p.x = Math.cos(theta) * spread;
+                p.y = -360 - Math.random() * 580;
+                p.z = Math.sin(theta) * spread;
+                p.vx = (Math.random() - 0.5) * 3;
+                p.vy = 2 + Math.random() * 5;
+                p.sandDelay = (i / PARTICLE_COUNT) * 55;
+            }
+        }
+
+        function cycleParticleMode() {
+            currentMode = (currentMode + 1) % 3;
+            const btnText = document.getElementById('reveal-btn-text');
+            const ambient = document.getElementById('hero-ambient');
+            const backdropWord = document.getElementById('backdrop-word');
+
+            playCyberTone(660, 0.12, 'sawtooth');
+
+            if (currentMode === 0) {
+                btnText.textContent = 'REVEAL // SİBER SİLÜET';
+                ambient.classList.remove('mode-ai');
+                backdropWord.textContent = 'DEVELOPER';
+            } else if (currentMode === 1) {
+                btnText.textContent = 'REVEAL // NEURAL AI BEYİN';
+                ambient.classList.add('mode-ai');
+                backdropWord.textContent = 'AI ARCHITECT';
+            } else {
+                btnText.textContent = 'REVEAL // KUANTUM FIRTINASI';
+                ambient.classList.remove('mode-ai');
+                backdropWord.textContent = 'CREATIVE DEV';
+            }
+        }
+
+        function setBackdropWord(word) {
+            playCyberTone(580, 0.06, 'sine');
+            document.getElementById('backdrop-word').textContent = word;
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouseScreenX = e.clientX;
+            mouseScreenY = e.clientY;
+
+            document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
+
+            const normX = (e.clientX / window.innerWidth) * 2 - 1;
+            const normY = (e.clientY / window.innerHeight) * 2 - 1;
+
+            targetYaw = normX * 0.65;
+            targetPitch = normY * 0.35;
+
+            const coordsEl = document.getElementById('hud-coords');
+            if (coordsEl) {
+                coordsEl.textContent = `X: ${normX.toFixed(2)} | Y: ${normY.toFixed(2)}`;
+            }
+        });
+
+        function handleMobileTouch(e) {
+            if (e.touches.length > 0) {
+                const t = e.touches[0];
+                mouseScreenX = t.clientX;
+                mouseScreenY = t.clientY;
+                const normX = (t.clientX / window.innerWidth) * 2 - 1;
+                const normY = (t.clientY / window.innerHeight) * 2 - 1;
+                targetYaw = normX * 0.72;
+                targetPitch = normY * 0.38;
+            }
+        }
+        window.addEventListener('touchstart', handleMobileTouch, { passive: true });
+        window.addEventListener('touchmove', handleMobileTouch, { passive: true });
+        window.addEventListener('touchend', () => {
+            mouseScreenX = -9999;
+            mouseScreenY = -9999;
+        }, { passive: true });
+
+        function enableMobileGyroscope() {
+            const btnText = document.getElementById('gyro-btn-text');
+            if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission().then(state => {
+                    if (state === 'granted') {
+                        window.addEventListener('deviceorientation', handleOrientation);
+                        if (btnText) btnText.textContent = 'SENSÖR AKTİF';
+                    }
+                }).catch(() => {});
+            } else {
+                window.addEventListener('deviceorientation', handleOrientation);
+                if (btnText) btnText.textContent = 'SENSÖR AKTİF';
+            }
+        }
+
+        function handleOrientation(e) {
+            if (e.gamma !== null && e.beta !== null) {
+                const gammaNorm = Math.max(-1, Math.min(1, e.gamma / 35));
+                const betaNorm = Math.max(-1, Math.min(1, (e.beta - 45) / 35));
+                targetYaw = gammaNorm * 0.65;
+                targetPitch = betaNorm * 0.35;
+            }
+        }
+
+        canvas.addEventListener('click', () => {
+            playCyberTone(240, 0.12, 'sine');
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles[i].vx += (Math.random() - 0.5) * 18;
+                particles[i].vy += (Math.random() - 0.5) * 18;
+                particles[i].vz += (Math.random() - 0.5) * 18;
+            }
+        });
+
+        let lastFrameTime = performance.now();
+        let frameCounter = 0;
+
+        function animateSandBust(now) {
+            requestAnimationFrame(animateSandBust);
+
+            frameCounter++;
+            if (now - lastFrameTime >= 500) {
+                const fps = Math.min(60, Math.round((frameCounter * 1000) / (now - lastFrameTime)));
+                const fpsEl = document.getElementById('hud-fps');
+                if (fpsEl) fpsEl.textContent = `${fps} FPS`;
+                frameCounter = 0;
+                lastFrameTime = now;
+            }
+
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            currentYaw += (targetYaw - currentYaw) * 0.07;
+            currentPitch += (targetPitch - currentPitch) * 0.07;
+
+            const centerX = canvasWidth / 2;
+            const centerY = isMobileView ? canvasHeight * 0.43 : canvasHeight * 0.47;
+            const fov = isMobileView
+                ? Math.min(canvasWidth * 1.15, canvasHeight * 0.72)
+                : Math.min(canvasWidth, canvasHeight) * 0.85;
+            const cameraZ = isMobileView ? 470 : 420;
+
+            const breath = Math.sin(now * 0.002) * 3.5;
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const p = particles[i];
+
+                let tx, ty, tz;
+                if (currentMode === 0) {
+                    tx = p.bustX;
+                    ty = p.bustY + breath;
+                    tz = p.bustZ;
+                } else if (currentMode === 1) {
+                    tx = p.neuralX;
+                    ty = p.neuralY + breath;
+                    tz = p.neuralZ;
+                } else {
+                    const spin = now * 0.0012;
+                    tx = p.vortexX * Math.cos(spin) - p.vortexZ * Math.sin(spin);
+                    tz = p.vortexX * Math.sin(spin) + p.vortexZ * Math.cos(spin);
+                    ty = p.vortexY + Math.sin(now * 0.003 + i * 0.01) * 12;
+                }
+
+                if (p.sandDelay > 0) {
+                    p.sandDelay -= 1;
+                    p.y += 4.5;
+                    p.x *= 0.96;
+                    p.z *= 0.96;
+                } else {
+                    p.vx += (tx - p.x) * 0.065;
+                    p.vy += (ty - p.y) * 0.065;
+                    p.vz += (tz - p.z) * 0.065;
+
+                    p.vx *= 0.82;
+                    p.vy *= 0.82;
+                    p.vz *= 0.82;
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.z += p.vz;
+                }
+
+                const headRotationWeight = currentMode === 0
+                    ? Math.max(0.28, Math.min(1.0, 1.0 - (p.y - 10) / 170))
+                    : 1.0;
+
+                const effYaw = currentYaw * headRotationWeight;
+                const effPitch = currentPitch * headRotationWeight;
+
+                const cY = Math.cos(effYaw), sY = Math.sin(effYaw);
+                const cX = Math.cos(effPitch), sX = Math.sin(effPitch);
+
+                const rx1 = p.x * cY - p.z * sY;
+                const rz1 = p.z * cY + p.x * sY;
+
+                const ry2 = p.y * cX - rz1 * sX;
+                const rz2 = rz1 * cX + p.y * sX;
+
+                const depth = cameraZ + rz2;
+                if (depth <= 10) continue;
+                const scale = fov / depth;
+
+                const screenX = centerX + rx1 * scale;
+                const screenY = centerY + ry2 * scale;
+
+                const dx = screenX - mouseScreenX;
+                const dy = screenY - mouseScreenY;
+                const distSq = dx * dx + dy * dy;
+                if (distSq < 6400) {
+                    const force = (1 - distSq / 6400) * 2.4;
+                    p.vx += (dx / 80) * force;
+                    p.vy += (dy / 80) * force;
+                }
+
+                if (currentMode === 1) {
+                    const alpha = Math.min(0.95, p.rim * 0.9 + 0.15);
+                    ctx.fillStyle = i % 3 === 0 ? `rgba(0, 240, 255, ${alpha})` : `rgba(139, 92, 246, ${alpha})`;
+                } else {
+                    if (isLightMode) {
+                        // Aydınlık temada yüksek kontrastlı koyu kehribar/bakır tonları
+                        if (p.rim > 0.78) {
+                            ctx.fillStyle = 'rgba(215, 75, 0, 0.95)';
+                        } else if (p.rim > 0.42) {
+                            ctx.fillStyle = 'rgba(165, 45, 5, 0.82)';
+                        } else {
+                            ctx.fillStyle = 'rgba(70, 20, 10, 0.45)';
+                        }
+                    } else {
+                        // Karanlık temada orijinal parlak ateş kehribarı[cite: 1]
+                        if (p.rim > 0.78) {
+                            ctx.fillStyle = 'rgba(255, 165, 30, 0.92)';
+                        } else if (p.rim > 0.42) {
+                            ctx.fillStyle = 'rgba(255, 78, 0, 0.75)';
+                        } else {
+                            ctx.fillStyle = 'rgba(135, 32, 8, 0.36)';
+                        }
+                    }
+                }
+
+                const pSize = p.size * scale * 0.75;
+                ctx.fillRect(screenX, screenY, pSize, pSize);
+            }
+        }
+
+        initParticles();
+        requestAnimationFrame(animateSandBust);
+
+        /***********************************************************************
+         * 3. PORTFOLIO PROJECTS DATA & DYNAMIC FILTER + MODAL ENGINE
+         ***********************************************************************/
+        const projectsData = [
+            {
+                id: 'sevkgo',
+                category: 'fullstack',
+                badge: 'SAAS & LOJİSTİK OTOMASYON',
+                title: 'SevkGo — Multi-Tenant Lojistik & Dağıtım Platformu',
+                shortDesc: 'Yüksek hacimli yük ve sevkiyat operasyonları için çok kiracılı (multi-tenant) toplu mesajlaşma, otomatik ilan dağıtım ve gerçek zamanlı operasyon yönetim sistemi.',
+                metrics: '%85 Operasyon Hızı • 99.9% Uptime',
+                accent: 'from-amberGlow to-orange-600',
+                icon: 'fa-truck-fast',
+                tech: ['Node.js', 'React', 'Multi-Tenant SaaS', 'WebSocket', 'REST API', 'PostgreSQL'],
+                architecture: 'Her lojistik firmasının izole veri katmanıyla çalıştığı (Multi-Tenant) kuyruk tabanlı mesaj ve yük eşleştirme mimarisi. Binlerce şoför ve yük veren arasında saniyeler içinde otomatik bildirim, grup dağıtımı ve canlı takip sağlar.',
+                codeSnippet: `// SevkGo Multi-Tenant Otomatik Yük Dağıtım Kuyruğu
+export async function dispatchLoadToFleet(tenantId, loadPayload) {
+  const activeDrivers = await db.drivers.findMatched(tenantId, loadPayload.route);
+  return await messageQueue.publishBatch({
+    tenantId,
+    recipients: activeDrivers.map(d => d.phone),
+    template: formatLoadAlert(loadPayload),
+    priority: 'HIGH_REALTIME'
+  });
+}`
+            },
+            {
+                id: 'neuralvoice',
+                category: 'ai',
+                badge: 'YAPAY ZEKA & SESLİ ASİSTAN',
+                title: 'NeuralVoice 3D — Otonom Sesli AI Asistanı',
+                shortDesc: 'Gemini LLM, ElevenLabs ultra düşük gecikmeli ses sentezi, n8n iş akışları ve 3D WebGL görsel arayüzü ile çalışan gerçek zamanlı sesli yapay zeka asistanı.',
+                metrics: '<380ms Ses Tepkisi • 7/24 Otonom',
+                accent: 'from-cyberCyan to-blue-600',
+                icon: 'fa-microphone-lines',
+                tech: ['Gemini API', 'ElevenLabs TTS', 'n8n Workflows', 'Three.js / WebGL', 'Python'],
+                architecture: 'Kullanıcının sesini gerçek zamanlı metne dönüştürüp (STT), bağlamsal vektör belleğiyle (RAG) Gemini üzerinden karar alan ve n8n otomasyonlarıyla takvim, e-posta ve sunucu işlemlerini sesli komutla yürüten otonom ajan.',
+                codeSnippet: `// NeuralVoice Gerçek Zamanlı Ses Akışı & Ajan Tetikleyici
+async function processVoiceCommand(audioBuffer) {
+  const transcript = await speechToText(audioBuffer);
+  const agentPlan = await geminiAgent.generatePlan(transcript, memoryContext);
+  if (agentPlan.requiresAction) await triggerN8nWebhook(agentPlan.webhookPayload);
+  return streamElevenLabsVoice(agentPlan.spokenResponse);
+}`
+            },
+            {
+                id: 'kodwalker',
+                category: 'cyber',
+                badge: 'SİBER GÜVENLİK & OSINT',
+                title: 'KodWalker — Hibrit Siber Güvenlik & OSINT Süiti',
+                shortDesc: 'Hem mobil (React Native / Expo) hem de Linux/Python terminal ortamında çalışan; ağ analizi, açık kaynak istihbaratı (OSINT) ve zafiyet taraması yapan hibrit araç seti.',
+                metrics: 'Cross-Platform • 15+ Tarama Modülü',
+                accent: 'from-emerald-400 to-teal-600',
+                icon: 'fa-shield-halved',
+                tech: ['React Native (Expo)', 'Python', 'Linux / Bash', 'OSINT API', 'Network Sockets'],
+                architecture: 'Saha güvenlik araştırmacıları için geliştirilen; domain/IP ayak izi tespiti, alt alan adı keşfi ve port durum analizlerini şifreli bir mobil gösterge panelinde birleştiren modüler siber güvenlik mimarisi.',
+                codeSnippet: `# KodWalker Asenkron OSINT & Port Keşif Motoru
+async def scan_target_surface(domain: str):
+    subdomains = await enumerate_subdomains(domain)
+    open_Services = await asyncio.gather(*[probe_host(h) for h in subdomains])
+    return generate_threat_report(domain, open_Services)`
+            },
+            {
+                id: 'algopulse',
+                category: 'ai',
+                badge: 'FİNANSAL ALGORİTMA & VERİ',
+                title: 'AlgoPulse — Algoritmik Piyasa & Sinyal Motoru',
+                shortDesc: 'Canlı borsa ve kripto veri akışlarını milisaniyeler içinde işleyen, çoklu teknik indikatör sinyalleri üreten ve geriye dönük strateji simülasyonu yapan analiz motoru.',
+                metrics: 'Gerçek Zamanlı WebSocket • Otomatik Sinyal',
+                accent: 'from-goldGlow to-amberGlow',
+                icon: 'fa-chart-line',
+                tech: ['Python', 'Pandas / NumPy', 'WebSocket Streams', 'Node.js Dashboard', 'Telegram Bot'],
+                architecture: 'Çoklu borsa WebSocket kanallarından akan mum verilerini (OHLCV) bellek içi (in-memory) işleyerek RSI, MACD ve hacim anomalilerini yakalayan ve anında Telegram/Web arayüzüne sinyal gönderen yüksek frekanslı veri hattı.',
+                codeSnippet: `# AlgoPulse Çoklu İndikatör Anomali Yakalayıcı
+def evaluate_market_tick(df):
+    rsi = compute_rsi(df['close'], period=14)
+    vol_spike = df['volume'].iloc[-1] > df['volume'].rolling(20).mean().iloc[-1] * 2.2
+    if rsi.iloc[-1] < 28 and vol_spike:
+        return dispatch_signal("STRONG_ACCUMULATION", df.iloc[-1])`
+            },
+            {
+                id: 'cybermotion',
+                category: 'motion',
+                badge: 'VFX, 3D TRACKING & MOTION',
+                title: 'CyberMotion — 3D Kamera Takibi & Görsel Efekt Stüdyosu',
+                shortDesc: 'Premiere Pro, After Effects, 3D kamera takibi, dinamik tipografi ve algoritmik ASCII/parçacık sanatıyla üretilen yüksek enerjili dijital prodüksiyonlar.',
+                metrics: 'Yüksek Etkileşim • 60FPS Motion UX',
+                accent: 'from-neonPurple to-pink-600',
+                icon: 'fa-film',
+                tech: ['Premiere Pro', '3D Camera Tracker', 'WebGL Shaders', 'Dynamic Typography', 'Sound Design'],
+                architecture: 'Gerçek dünya video çekimlerini 3 boyutlu uzayda analiz ederek sahnenin içine perspektife duyarlı siber HUD panelleri, neon efektler ve tipografik katmanlar yerleştiren hibrit görsel tasarım iş akışı.',
+                codeSnippet: `// GLSL Parçacık & ASCII Görsel Efekt Shader Kesiti
+void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+    vec2 uv = fragCoord.xy / iResolution.xy;
+    float luma = dot(texture(iChannel0, uv).rgb, vec3(0.299, 0.587, 0.114));
+    fragColor = vec4(vec3(1.0, 0.33, 0.0) * step(0.45, luma), 1.0);
+}`
+            },
+            {
+                id: 'nexusauto',
+                category: 'fullstack',
+                badge: 'KURUMSAL OTOMASYON & BOT',
+                title: 'NexusFlow — Otonom CRM & İş Akışı Orkestratörü',
+                shortDesc: 'Şirketlerin müşteri taleplerini, sosyal medya mesajlarını ve teklif süreçlerini n8n, özel Node.js mikroservisleri ve yapay zeka ile sıfır insan müdahalesiyle yöneten sistem.',
+                metrics: '10x Dönüşüm Hızı • Sıfır Veri Kaybı',
+                accent: 'from-amberGlow to-rose-600',
+                icon: 'fa-robot',
+                tech: ['Node.js', 'n8n', 'Webhook Mesh', 'Docker', 'REST API'],
+                architecture: 'Farklı iletişim kanallarından (WhatsApp, Web Form, Instagram) gelen verileri tek bir standart şemada birleştirip yapay zeka ile sınıflandıran ve ilgili satış temsilcisine hazır teklif taslağıyla sunan otomasyon omurgası.',
+                codeSnippet: `// NexusFlow Çok Kanallı Lead Sınıflandırma Webhook'u
+app.post('/webhooks/omnilead', async (req, res) => {
+  const lead = normalizeLead(req.body);
+  const score = await aiLeadScorer.evaluate(lead);
+  await crmClient.upsertDeal({ ...lead, priorityScore: score });
+  res.status(200).json({ processed: true });
+});`
+            }
+        ];
+
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projects-grid');
+            const filtered = filter === 'all' ? projectsData : projectsData.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map(p => `
+                <article onclick="openProjectModal('${p.id}')" class="cyber-card rounded-2xl p-6 flex flex-col justify-between cursor-pointer group">
+                    <div>
+                        <div class="h-36 rounded-xl bg-gradient-to-br ${p.accent} p-[1px] mb-5 relative overflow-hidden">
+                            <div class="w-full h-full bg-obsidian/90 rounded-[11px] p-4 flex flex-col justify-between relative overflow-hidden">
+                                <div class="flex items-center justify-between z-10">
+                                    <span class="text-[10px] font-mono px-2.5 py-1 rounded bg-white/10 text-white">${p.badge}</span>
+                                    <i class="fa-solid ${p.icon} text-2xl text-white/80 group-hover:scale-125 group-hover:text-amberGlow transition-transform"></i>
+                                </div>
+                                <div class="z-10 font-mono text-[11px] text-emerald-400 flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                                    <span>${p.metrics}</span>
+                                </div>
+                                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-gradient-to-br ${p.accent} opacity-20 rounded-full blur-xl group-hover:opacity-45 transition"></div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-tech text-xl font-bold text-white group-hover:text-amberGlow transition">${p.title}</h3>
+                        <p class="mt-2 text-xs sm:text-sm text-gray-400 leading-relaxed line-clamp-3">${p.shortDesc}</p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-white/10">
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            ${p.tech.slice(0, 4).map(t => `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-gray-300 border border-white/5">${t}</span>`).join('')}
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-mono text-amberGlow">
+                            <span>MİMARİ & KODU İNCELE</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1.5 transition-transform"></i>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function filterProjects(category) {
+            playCyberTone(480, 0.06, 'sine');
+            document.querySelectorAll('#project-tabs .tab-btn').forEach(btn => {
+                if (btn.dataset.tab === category) {
+                    btn.className = 'tab-btn shrink-0 px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-amberGlow text-black transition';
+                } else {
+                    btn.className = 'tab-btn shrink-0 px-4 py-2 rounded-xl text-xs font-mono text-gray-300 hover:text-white transition';
+                }
+            });
+            renderProjects(category);
+        }
+
+        function openProjectModal(projectId) {
+            playCyberTone(620, 0.09, 'triangle');
+            const p = projectsData.find(item => item.id === projectId);
+            if (!p) return;
+
+            document.getElementById('modal-badge').textContent = p.badge;
+            document.getElementById('modal-metrics').textContent = p.metrics;
+            document.getElementById('modal-title').textContent = p.title;
+            document.getElementById('modal-subtitle').textContent = p.shortDesc;
+            document.getElementById('modal-architecture').textContent = p.architecture;
+            document.getElementById('modal-code').textContent = p.codeSnippet;
+            document.getElementById('modal-tech-tags').innerHTML = p.tech.map(
+                t => `<span class="text-xs font-mono px-2.5 py-1 rounded-lg bg-amberGlow/15 text-amberGlow border border-amberGlow/30">${t}</span>`
+            ).join('');
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.getElementById('project-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'project-modal') closeProjectModal();
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+                closeSocialModal();
+            }
+        });
+
+        renderProjects('all');
+
+        /***********************************************************************
+         * 4. GITHUB 52-WEEK HEATMAP & LIVE API FETCHER
+         ***********************************************************************/
+        function generateHeatmapGrid() {
+            const grid = document.getElementById('heatmap-grid');
+            const levels = [
+                'bg-white/5',
+                'bg-amberGlow/25',
+                'bg-amberGlow/55',
+                'bg-amberGlow/85',
+                'bg-goldGlow'
+            ];
+
+            let html = '';
+            const totalDays = 52 * 7;
+            for (let i = 0; i < totalDays; i++) {
+                const rand = Math.random();
+                let lvl = 0;
+                if (rand > 0.82) lvl = 4;
+                else if (rand > 0.60) lvl = 3;
+                else if (rand > 0.35) lvl = 2;
+                else if (rand > 0.18) lvl = 1;
+
+                const commits = lvl === 0 ? 0 : lvl * 3 + Math.floor(Math.random() * 4);
+                const weeksAgo = 52 - Math.floor(i / 7);
+                html += `<div onmouseenter="updateHeatmapTooltip(${commits}, ${weeksAgo})"
+                              class="w-3 h-3 rounded-[3px] ${levels[lvl]} hover:scale-125 hover:ring-1 hover:ring-white transition cursor-pointer"></div>`;
+            }
+            grid.innerHTML = html;
+        }
+
+        function updateHeatmapTooltip(commits, weeksAgo) {
+            const tooltip = document.getElementById('heatmap-tooltip');
+            tooltip.textContent = `⚡ ${weeksAgo} hafta önce: ${commits} commit & otomasyon (Deploy) gerçekleştirildi.`;
+        }
+
+        async function fetchLiveGitHubStats() {
+            const username = document.getElementById('github-username-input').value.trim();
+            if (!username) return;
+            const icon = document.getElementById('gh-sync-icon');
+            const statusMsg = document.getElementById('gh-status-msg');
+            icon.classList.add('fa-spin');
+            statusMsg.textContent = 'GitHub API bağlanıyor...';
+
+            try {
+                const res = await fetch(`https://api.github.com/users/${encodeURIComponent(username)}`);
+                if (!res.ok) throw new Error('Kullanıcı bulunamadı');
+                const data = await res.json();
+
+                document.getElementById('gh-repos').textContent = data.public_repos || 34;
+                document.getElementById('gh-stars').textContent = (data.followers * 4 + data.public_repos * 3) || 218;
+                document.getElementById('gh-commits').textContent = (data.public_repos * 42 + 320).toLocaleString('tr-TR');
+                statusMsg.textContent = `✓ @${data.login} Canlı Senkronize`;
+                playCyberTone(720, 0.1, 'sine');
+            } catch (err) {
+                statusMsg.textContent = 'Simülasyon Modu Aktif (Özel/Yerel Profil)';
+            } finally {
+                icon.classList.remove('fa-spin');
+                generateHeatmapGrid();
+            }
+        }
+
+        generateHeatmapGrid();
+
+        /***********************************************************************
+         * 5. AI ARCHITECT DIGITAL TWIN SANDBOX
+         ***********************************************************************/
+        const aiScenarios = {
+            logistics: {
+                q: 'SevkGo benzeri çok kullanıcılı WhatsApp/SMS otomasyonlu lojistik sistemi kurmak istiyorum.',
+                a: `[MİMARİ ÇÖZÜM HAZIRLANDI]\n• Backend & Kuyruk: Node.js + BullMQ (Redis) ile saniyede 500+ mesaj dağıtımı.\n• Veri İzolasyonu: PostgreSQL Row-Level Security (Multi-Tenant) mimarisi.\n• Arayüz: React + Tailwind gerçek zamanlı WebSocket operasyon paneli.\n• Tahmini MVP Süresi: 3 - 4 Hafta.`
+            },
+            voiceai: {
+                q: 'Şirketimiz için gerçek zamanlı konuşan 3D sesli yapay zeka müşteri temsilcisi.',
+                a: `[MİMARİ ÇÖZÜM HAZIRLANDI]\n• Zeka Katmanı: Gemini 2.5 Flash + Şirket içi bilgi bankası (RAG Vektör DB).\n• Ses Sentezi: ElevenLabs Turbo v2.5 (<350ms gecikmeli doğal Türkçe ses).\n• Otomasyon: n8n üzerinden CRM ve randevu takvimine doğrudan kayıt.\n• Görsel: WebGL 3D ses frekansına duyarlı parçacık avatarı.`
+            },
+            cyber: {
+                q: 'Mobil ve masaüstünde çalışan OSINT & siber güvenlik tarama uygulaması.',
+                a: `[MİMARİ ÇÖZÜM HAZIRLANDI]\n• Mobil İstemci: React Native (Expo) ile iOS/Android şifreli kontrol paneli.\n• Tarama Motoru: Python FastAPI + Asenkron soket ve OSINT keşif işçileri.\n• Raporlama: Otomatik PDF ve gerçek zamanlı zafiyet bildirim sistemi.`
+            }
+        };
+
+        function appendTerminalExchange(question, answer) {
+            const box = document.getElementById('ai-terminal-output');
+            box.innerHTML += `
+                <div class="text-amberGlow font-semibold">&gt; ${question}</div>
+                <div class="p-3.5 rounded-xl bg-cyberCyan/10 border border-cyberCyan/30 text-gray-100 whitespace-pre-line leading-relaxed">${answer}</div>
+            `;
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function runAiScenario(key) {
+            playCyberTone(640, 0.08, 'sine');
+            const item = aiScenarios[key];
+            if (item) appendTerminalExchange(item.q, item.a);
+        }
+
+        function handleCustomAiPrompt(e) {
+            e.preventDefault();
+            const input = document.getElementById('ai-custom-input');
+            const val = input.value.trim();
+            if (!val) return;
+            playCyberTone(680, 0.08, 'triangle');
+
+            const reply = `[CEM AI ARCHITECT ANALİZİ]\n"${val}" projeniz için önerilen mimari:\n1. Omurga: Node.js & TypeScript mikroservis yapısı + Gemini AI Ajan entegrasyonu.\n2. Ön Yüz: Yüksek dönüşümlü, 60FPS animasyonlu React / Next.js arayüzü.\n3. Otomasyon: n8n ile tüm bildirim ve veri akışlarının otonomlaştırılması.\n→ Detaylı yol haritası için aşağıdaki iletişim formundan hemen birlikte başlayabiliriz!`;
+            appendTerminalExchange(val, reply);
+            input.value = '';
+        }
+
+        /***********************************************************************
+         * 6. CONTACT CONFIGURATOR & SCROLL REVEAL
+         ***********************************************************************/
+        function toggleServicePill(btn) {
+            playCyberTone(500, 0.05, 'sine');
+            btn.classList.toggle('border-amberGlow');
+            btn.classList.toggle('bg-amberGlow/20');
+            btn.classList.toggle('text-white');
+        }
+
+        function updateScopeLabel(val) {
+            const labels = {
+                1: 'Hızlı Prototip / Otomasyon Botu (1-2 Hafta)',
+                2: 'Orta Ölçekli SaaS / AI MVP (3-5 Hafta)',
+                3: 'Kurumsal Multi-Tenant Sistem + 3D Web (6-8 Hafta)',
+                4: 'Uzun Vadeli Teknik Partnerlik & Tam Ekosistem'
+            };
+            document.getElementById('scope-label').textContent = labels[val];
+        }
+
+        function copyEmailAddress() {
+            navigator.clipboard.writeText('iletisim@cemmiracbarac.dev');
+            const el = document.getElementById('email-text');
+            el.textContent = '✓ E-POSTA KOPYALANDI!';
+            setTimeout(() => el.textContent = 'iletisim@cemmiracbarac.dev', 2500);
+        }
+
+        function submitProjectBrief(e) {
+            e.preventDefault();
+            playCyberTone(760, 0.14, 'sine');
+            const toast = document.getElementById('contact-toast');
+            toast.classList.remove('hidden');
+            e.target.reset();
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            drawer.classList.toggle('hidden');
+            if (drawer.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-sm';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-base text-amberGlow';
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Sayfa açıldıktan 3.5 saniye sonra "Beni Takip Et" Pop-up'ını göster
+        setTimeout(() => {
+            if (!sessionStorage.getItem('cemSocialPopupSeen')) {
+                openSocialModal();
+                sessionStorage.setItem('cemSocialPopupSeen', '1');
+            }
+        }, 3500);
+    </script>
+</body>
+</html>
