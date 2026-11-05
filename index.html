@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CEM MİRAÇ BARAÇ — Creative Developer, AI Architect & Designer</title>
+
+    <!-- ================================================================= -->
+    <!-- WHATSAPP, INSTAGRAM, LINKEDIN & X (TWITTER) BAĞLANTI ÖNİZLEMESİ   -->
+    <!-- Not: KULLANICI_ADIN yazan yeri kendi GitHub adınla değiştirebilirsin -->
+    <!-- ================================================================= -->
+    <meta name="description" content="İnteraktif 3D Silüet, Otonom Yapay Zeka Sistemleri ve Full-Stack Mimari Portfolyosu.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://KULLANICI_ADIN.github.io/portfolio/">
+    <meta property="og:title" content="CEM MİRAÇ BARAÇ // AI Architect & Creative Developer">
+    <meta property="og:description" content="İnteraktif 3D Parçacık Silüeti & Yeni Nesil Yazılım Mimarisi. Keşfetmek için tıklayın.">
+    <meta property="og:image" content="https://KULLANICI_ADIN.github.io/portfolio/og-preview.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CEM MİRAÇ BARAÇ // AI Architect & Creative Developer">
+    <meta name="twitter:description" content="İnteraktif 3D Parçacık Silüeti & Yeni Nesil Yazılım Mimarisi.">
+    <meta name="twitter:image" content="https://KULLANICI_ADIN.github.io/portfolio/og-preview.jpg">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Syne (Display), Space Grotesk (Tech), Inter (UI), JetBrains Mono (Code/HUD) -->
@@ -361,20 +381,20 @@
             </div>
         </div>
 
-        <!-- LAYER 1: MASSIVE METALLIC "DEVELOPER" TEXT IN BACKGROUND[cite: 1] -->
+        <!-- LAYER 1: MASSIVE METALLIC "DEVELOPER" TEXT IN BACKGROUND -->
         <div class="relative z-10 w-full my-auto flex flex-col items-center justify-center pointer-events-none px-2 -mt-6 sm:mt-0">
             <h1 id="backdrop-word" class="hero-backdrop-text text-center tracking-tighter">DEVELOPER</h1>
         </div>
 
-        <!-- LAYER 2: 3D INTERACTIVE SAND PARTICLE SILHOUETTE CANVAS[cite: 1] -->
+        <!-- LAYER 2: 3D INTERACTIVE SAND PARTICLE SILHOUETTE CANVAS -->
         <div class="absolute inset-0 z-20 flex items-center justify-center pointer-events-auto">
             <canvas id="sand-bust-canvas" class="w-full h-full cursor-crosshair"></canvas>
         </div>
 
-        <!-- Horizontal Optical Flare Line[cite: 1] -->
+        <!-- Horizontal Optical Flare Line -->
         <div class="absolute top-[44%] sm:top-[47%] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amberGlow/40 to-transparent pointer-events-none z-20 blur-[0.5px]"></div>
 
-        <!-- LAYER 3: FOREGROUND CONTROLS & "REVEAL" BUTTON[cite: 1] -->
+        <!-- LAYER 3: FOREGROUND CONTROLS & "REVEAL" BUTTON -->
         <div class="relative z-30 w-full max-w-xl mx-auto flex flex-col items-center gap-3 px-4 text-center mt-auto pt-44 sm:pt-56">
             
             <!-- Interactive Control Bar: REVEAL + Sand Hourglass Reset + Mobile Gyroscope Toggle -->
@@ -1136,7 +1156,7 @@
         }
 
         /***********************************************************************
-         * 2. 3D PARAMETRIC SAND PARTICLE SILHOUETTE ENGINE[cite: 1]
+         * 2. 3D PARAMETRIC SAND PARTICLE SILHOUETTE ENGINE
          ***********************************************************************/
         const canvas = document.getElementById('sand-bust-canvas');
         const ctx = canvas.getContext('2d', { alpha: true });
@@ -1502,7 +1522,6 @@
                     ctx.fillStyle = i % 3 === 0 ? `rgba(0, 240, 255, ${alpha})` : `rgba(139, 92, 246, ${alpha})`;
                 } else {
                     if (isLightMode) {
-                        // Aydınlık temada yüksek kontrastlı koyu kehribar/bakır tonları
                         if (p.rim > 0.78) {
                             ctx.fillStyle = 'rgba(215, 75, 0, 0.95)';
                         } else if (p.rim > 0.42) {
@@ -1511,7 +1530,6 @@
                             ctx.fillStyle = 'rgba(70, 20, 10, 0.45)';
                         }
                     } else {
-                        // Karanlık temada orijinal parlak ateş kehribarı[cite: 1]
                         if (p.rim > 0.78) {
                             ctx.fillStyle = 'rgba(255, 165, 30, 0.92)';
                         } else if (p.rim > 0.42) {
